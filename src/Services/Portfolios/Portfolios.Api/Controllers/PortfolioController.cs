@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Portfolios.Application.Commands;
+using Portfolios.Application.Contracts;
 
 namespace Portfolios.Controllers;
 
@@ -8,8 +10,11 @@ public class PortfolioController : ControllerBase
 {
     public static List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
 
-    public PortfolioController() //TODO - Add tests
+    protected readonly ICommandDispatcher _commandDispatcher;
+
+    public PortfolioController(ICommandDispatcher commandDispatcher) //TODO - Add tests
     {
+        _commandDispatcher = commandDispatcher ?? throw new ArgumentNullException();
     }
 
     [HttpGet()]
@@ -38,6 +43,8 @@ public class PortfolioController : ControllerBase
     {
         var portfolio = new Portfolio(portfolioDto.Name, portfolioDto.UserId);
         Portfolios.Add(portfolio);
+
+        var response = await _commandDispatcher.Dispatch(new CreatePortfolioCommand());
 
         return CreatedAtAction(nameof(GetById), new { id = portfolio.Id }, PortfolioDto.Map(portfolio));
     }
