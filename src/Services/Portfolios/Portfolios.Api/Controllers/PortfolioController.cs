@@ -42,6 +42,13 @@ public class PortfolioController : ControllerBase
     public async Task<IActionResult> Create(string name)
     {
         var response = await _commandDispatcher.Dispatch(new CreatePortfolioCommand(name));
+
+        //TO DO - Create middleware
+        if (response.ValidationErrors.Any())
+        {
+            return BadRequest(response.ValidationErrors);
+        }
+
         return CreatedAtAction(nameof(GetById), new { id = response.CreatePortfolioDto.Id }, response);
     }
 }
