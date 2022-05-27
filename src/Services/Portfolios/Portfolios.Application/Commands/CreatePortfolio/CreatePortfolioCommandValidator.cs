@@ -1,6 +1,8 @@
-﻿namespace Portfolios.Application.Commands
+﻿using FluentValidation;
+
+namespace Portfolios.Application.Commands
 {
-    public class CreatePortfolioCommandValidator
+    public class CreatePortfolioCommandValidator : AbstractValidator<CreatePortfolioCommand>
     {
     }
 }

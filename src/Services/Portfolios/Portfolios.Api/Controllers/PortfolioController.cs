@@ -18,7 +18,7 @@ public class PortfolioController : ControllerBase
     }
 
     [HttpGet()]
-    [ProducesResponseType(typeof(IEnumerable<PortfolioDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CreatePortfolioDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get()
     {
         return Ok(Portfolios.Select(p => PortfolioDto.Map(p)));
@@ -38,14 +38,10 @@ public class PortfolioController : ControllerBase
     }
 
     [HttpPost()]
-    [ProducesResponseType(typeof(PortfolioDto), StatusCodes.Status201Created)]
-    public async Task<IActionResult> Create(CreatePortfolioDto portfolioDto)
+    [ProducesResponseType(typeof(CreatePortfolioCommandResponse), StatusCodes.Status201Created)]
+    public async Task<IActionResult> Create(string name)
     {
-        var portfolio = new Portfolio(portfolioDto.Name, portfolioDto.UserId);
-        Portfolios.Add(portfolio);
-
-        var response = await _commandDispatcher.Dispatch(new CreatePortfolioCommand());
-
-        return CreatedAtAction(nameof(GetById), new { id = portfolio.Id }, PortfolioDto.Map(portfolio));
+        var response = await _commandDispatcher.Dispatch(new CreatePortfolioCommand(name));
+        return CreatedAtAction(nameof(GetById), new { id = response.CreatePortfolioDto.Id }, response);
     }
 }

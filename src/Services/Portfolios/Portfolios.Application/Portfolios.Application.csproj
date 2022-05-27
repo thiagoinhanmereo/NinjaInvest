@@ -14,4 +14,8 @@
     <Folder Include="Querys\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.0.2" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Portfolios.Application.Contracts;
+﻿using Portfolios.Application.Contracts;
 using Portfolios.Domain.Commom;
 
 namespace Portfolios.Infrastructure
