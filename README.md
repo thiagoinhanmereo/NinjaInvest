@@ -1,2 +1,2 @@
 # NinjaInvest
-Ninja Invest is the best plataform to manage your portfolio
+Ninja Invest is the best platform to manage your portfolio
