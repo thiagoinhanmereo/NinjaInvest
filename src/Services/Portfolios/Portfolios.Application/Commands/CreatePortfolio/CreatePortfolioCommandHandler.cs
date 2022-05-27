@@ -17,7 +17,7 @@ namespace Portfolios.Application.Commands
                 foreach (var error in validationResult.Errors)
                 {
                     createPortfolioCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-                }                
+                }
             }
 
             if (createPortfolioCommandResponse.Success)
