@@ -1,18 +1,14 @@
 ﻿using CleanArch.Application.Contracts.Persistence;
-using CleanArch.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Portfolios.Persistence.Context;
 
 namespace CleanArch.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepositoryAsync<T> where T : class
     {
-        protected readonly ApplicationDbContext _dbContext;
+        protected readonly PortfoliosDbContext _dbContext;
 
-        public GenericRepository(ApplicationDbContext dbContext)
+        public GenericRepository(PortfoliosDbContext dbContext)
         {
             _dbContext = dbContext;
         }

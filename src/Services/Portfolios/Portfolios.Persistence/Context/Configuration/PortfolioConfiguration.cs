@@ -7,6 +7,7 @@ namespace Portfolios.Persistence.Context.Configuration
     {
         public void Configure(EntityTypeBuilder<Portfolio> builder)
         {
+            builder.ToTable(nameof(Portfolio).ToLower());
             builder.HasKey(w => w.Id);
         }
     }

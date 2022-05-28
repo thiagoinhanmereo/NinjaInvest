@@ -2,9 +2,9 @@
 
 namespace Portfolios.Persistence.Context
 {
-    public class ApplicationDbContext : DbContext
+    public class PortfoliosDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public PortfoliosDbContext(DbContextOptions<PortfoliosDbContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; //Check this later
         }
@@ -13,7 +13,7 @@ namespace Portfolios.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(PortfoliosDbContext).Assembly);
         }
     }
 }

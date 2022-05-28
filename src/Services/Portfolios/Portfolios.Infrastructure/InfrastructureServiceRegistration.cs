@@ -8,8 +8,8 @@ namespace Portfolios.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.TryAddSingleton<ICommandDispatcher, CommandDispatcher>();
-            services.TryAddSingleton<IQueryDispatcher, QueryDispatcher>();
+            services.TryAddScoped<ICommandDispatcher, CommandDispatcher>();
+            services.TryAddScoped<IQueryDispatcher, QueryDispatcher>();
 
             // INFO: Using https://www.nuget.org/packages/Scrutor for registering all Query and Command handlers by convention
             services.Scan(selector =>
@@ -20,7 +20,7 @@ namespace Portfolios.Infrastructure
                              filter.AssignableTo(typeof(IQueryHandler<,>));
                          })
                          .AsImplementedInterfaces()
-                         .WithSingletonLifetime();
+                         .WithScopedLifetime();
              });
 
             services.Scan(selector =>
@@ -31,7 +31,7 @@ namespace Portfolios.Infrastructure
                             filter.AssignableTo(typeof(ICommandHandler<,>));
                         })
                         .AsImplementedInterfaces()
-                        .WithSingletonLifetime();
+                        .WithScopedLifetime();
             });
 
 
