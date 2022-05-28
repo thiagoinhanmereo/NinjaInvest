@@ -1,4 +1,4 @@
-﻿namespace CleanArch.Application.Contracts.Persistence
+﻿namespace Portfolios.Application.Contracts.Persistence
 {
     public interface IGenericRepositoryAsync<T> where T : class
     {

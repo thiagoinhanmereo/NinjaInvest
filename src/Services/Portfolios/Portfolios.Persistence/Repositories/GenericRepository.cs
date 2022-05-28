@@ -1,8 +1,8 @@
-﻿using CleanArch.Application.Contracts.Persistence;
+﻿using Portfolios.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Portfolios.Persistence.Context;
 
-namespace CleanArch.Persistence.Repositories
+namespace Portfolios.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepositoryAsync<T> where T : class
     {

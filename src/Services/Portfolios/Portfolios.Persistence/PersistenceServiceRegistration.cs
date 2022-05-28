@@ -1,5 +1,5 @@
-﻿using CleanArch.Application.Contracts.Persistence;
-using CleanArch.Persistence.Repositories;
+﻿using Portfolios.Application.Contracts.Persistence;
+using Portfolios.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +13,7 @@ namespace Portfolios.Infrastructure
         {
             services.AddDbContext<PortfoliosDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("PortfoliosDB")));
             services.AddScoped(typeof(IGenericRepositoryAsync<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IPortfolioRepository), typeof(PortfolioRepository));
 
             return services;
         }

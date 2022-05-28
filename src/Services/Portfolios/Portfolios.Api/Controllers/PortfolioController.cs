@@ -39,6 +39,7 @@ public class PortfolioController : ControllerBase
 
     [HttpPost()]
     [ProducesResponseType(typeof(CreatePortfolioCommandResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CreatePortfolioCommandResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create(string name)
     {
         var response = await _commandDispatcher.Dispatch(new CreatePortfolioCommand(name));
